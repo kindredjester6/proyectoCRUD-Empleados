@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styleInsertar.css" rel="stylesheet" type="text/css">
+
+    <title>Sistema de Empleados</title>
+</head>
+<body>
+    <div class="container">
+        <div class="tittle"> Insertar Empleado </div>
+        <form action="#">
+            <div class="employee-details">
+                <div class="input-box">
+                    <span class="details">Cedula</span>
+                    <input type="text" placeholder="Documento de identidad" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Nombre completo</span>
+                    <input type="text" placeholder="Ejemplo: Jeon Jungkook" required>
+                </div>
+                <div class="input-box"></div>
+                    <span class="details">Puesto</span>
+                    <input class="text" list="puestos">
+                    <datalist id="puestos">
+                        <option value="Cajero"></option>
+                        <option value="Camarero"></option>
+                        <option value="Cuidador"></option>
+                        <option value="Conductor"></option>
+                        <option value="Asistente"></option>
+                        <option value="Recepcionista"></option>
+                        <option value="Fontanero"></option>
+                        <option value="Niñera"></option>
+                        <option value="Conserje"></option>
+                        <option value="Albañil"></option>
+                    </datalist>
+                </div>
+                
+                <div class="button">
+                    <input type="submit" value="Insertar">
+                </div>
+            </div>
+        </form>
+        
+        <script src = "script.js" ></script>
+    </div>
+</body>
+</html>
