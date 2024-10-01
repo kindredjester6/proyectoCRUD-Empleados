@@ -31,18 +31,57 @@ function fetchPostValidationEmployee() {
     .catch((error) => console.error('Error:', error));
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function fetchGetJSONData(valor) {
+  if (valor == '') {
+    valor = '%20';
+  }
+  fetch(`http://localhost:9876/empleados/${valor}`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      mostrarEmpleados(data.recordset);
+    })
+    .catch((error) => console.error('Unable to fetch data:', error));
+}
+
+function mostrarEmpleados(data) {
+  eliminarElemTabla();
+  for (let empleado = 0; empleado < data.length; empleado++) {
+    var tr = document.createElement('tr');
+    for (let i = 0; i < Object.values(data[empleado]).length; i++) {
+      let createTd = document.createElement('td');
+      createTd.textContent = Object.values(data[empleado]).at(i);
+      createTd.classList.add('tableData');
+      tr.appendChild(createTd);
+    }
+    var tablero = document.getElementById('tablero');
+    tablero.appendChild(tr);
+  }
+}
+
+function eliminarElemTabla() {
+  let nodeList = document.getElementById('tablero').childNodes;
+  if (nodeList.length > 2) {
+    for (var i = 2; !(nodeList.length == 2); i) {
+      var item = nodeList[i];
+      item.remove();
+    }
+  }
+}
 function validarCredenciales() {
   //  var username = document.getElementById('username').value;
   //  var password = document.getElementById('password').value;
   fetchPostValidationEmployee();
   if (tries === 5) {
+    //fetchGetJSONData(document.getElementById('search').childNodes
     document.getElementById('btnLog').disabled = true;
-    setTimeout(
-      alert(
-        'Demasiados intentos de login, intente de nuevo dentro de 10 minutos',
-      ),
-      600000,
-    );
+    setTimeout(alert('Demasiados intentos de login, intente de nuevo dentro de 10 minutos'), 600000);
   }
 }
 

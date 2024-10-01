@@ -5,7 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Empleados</title>
 </head>
-<body>
-    <h1>Lista de Empleados</h1>
+<body onload="fetchGetJSONData('%20')">
+    <div align='center'>
+        <h1 class="titulo" style="font-size: 6vh;" >Lista de Empleados</h1>
+        <input type="search" name="search" id="search"/>
+        <input type="button" value="Buscar" id="btn-buscar" onclick="fetchGetJSONData(document.getElementById('search').value)"/> 
+        <table border="1" style="background-color: #F6F2FF;" id="tablero">
+          <tr>
+            <th>Nombre</th>
+            <th data-type="string" >Puesto</th>
+            <th>Valor documento identidad</th>
+            <th>Saldo vacaciones</th>
+            <th>Fecha Contratacion</th>
+          </tr>
+        </table>
+          <a href="insertar.html">
+            <button id="btnInsertar" class="btnInsertar" >Insertar</button>
+          </a>
+    <script src = "script.js" ></script>
+    </div>
 </body>
 </html>
