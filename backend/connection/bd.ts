@@ -1,6 +1,7 @@
 import { connect, ConnectionPool, Int, VarChar } from 'mssql';
 import { ResponseMsj } from 'backend/util/interfaces/bdResponse';
 import { Usuario } from 'backend/util/interfaces/usuarioInter';
+import { EmpleadoFilter } from 'backend/util/interfaces/empleadoInter';
 /**
  * DataBaseClient
  * @abstract Es una clase de la cual el cliente
@@ -46,6 +47,15 @@ export class DataBaseClient {
       .input('Password', VarChar(64), request.Password)
       .output('outResult', Int)
       .execute('checkCredentials');
+    return result;
+  }
+
+  public async filtrarEmpleados(request: EmpleadoFilter) {
+    const result: ResponseMsj = await this.pool
+      .request()
+      .input('inBusqueda', VarChar(64), request)
+      .output('outResult', Int)
+      .execute('filtrarUsuarios');
     return result;
   }
 }
